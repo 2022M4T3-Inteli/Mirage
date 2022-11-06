@@ -22,20 +22,22 @@
 
 ported for sparkfun esp32 
 31.01.2017 by Jan Hendrik Berlin
- 
+
+This base was adapted and used by group Mirage at Atech Location System
+
  */
 
 #include <WiFi.h>
 
-const char* ssid = "Inteli-COLLEGE";
-const char* password = "QazWsx@123";
+const char* ssid = "Inteli-COLLEGE"; // set the wi-fi name
+const char* password = "QazWsx@123";  // set the wi-fi password
 
 WiFiServer server(80);
 
 void setup()
 {
-    Serial.begin(115200);
-    pinMode(13, OUTPUT);      // set the LED pin mode
+    Serial.begin(115200); // start the terminal
+    pinMode(13, OUTPUT); // set the buzzer pin mode
 
     delay(10);
 
@@ -54,15 +56,13 @@ void setup()
     }
 
     Serial.println("");
-    Serial.println("WiFi connected.");
+    Serial.println("WiFi connected."); // show that the WiFi was sucessfully connected 
     Serial.println("IP address: ");
-    Serial.println(WiFi.localIP());
+    Serial.println(WiFi.localIP()); // print the ip adress that will be used to connect to the server 
     
     server.begin();
 
 }
-
-int value = 0;
 
 void loop(){
  WiFiClient client = server.available();   // listen for incoming clients
