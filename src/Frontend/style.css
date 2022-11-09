@@ -1,0 +1,48 @@
+div.sidebar{
+    width:50px;
+    background-color: rgb(84, 133, 255);
+    height:100%;
+    float:left;
+    position:fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    overflow-x:hidden;
+    padding-top:20px;
+}
+div.content{
+    margin-left:70px;
+    padding:0px 10px;
+    float: left;
+}
+div.icons{
+    text-align: center;
+    line-height: 100px;
+}
+div.boxes{
+    line-height: 60px;
+    text-align: center;
+}
+select.select{
+    text-align: center;
+    width: 300px;
+}
+div.buttons{
+    text-align: center;
+}
+#trackingMap{
+    border-style: dotted;
+    border-color: black;
+}
+#titulo{
+    text-align: center;
+    font-size: 50px;
+    font-family: "Times New Roman", Times, serif;
+    color: rgb(84, 133, 255);
+}
+#start{
+    background-color: rgb(84, 133, 255);
+}
+#stop{
+    background-color: rgb(255, 176, 176);
+}

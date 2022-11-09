@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Mirage Tracking System</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="icons">
+        <img src="https://img.icons8.com/ios-glyphs/512/home.png" width="35px">
+        <img src="https://img.icons8.com/material/512/search.png" width="35px">
+        <img src="https://img.icons8.com/material/512/user-male-circle--v1.png" width="35px">
+        </div>
+    </div>
+    <header>
+        <h1 id="titulo">Mirage Tracking System</h1>
+    </header>
+    <div class="content">
+            <section>
+                <aside>
+                    <canvas width="500px" height="350px" id="trackingMap">
+                        Your browser does not support the canvas element. Please use a different browser.
+                    </canvas>
+                </aside>
+            </section>
+    </div>
+    <div class="boxes">
+        <select class="select">
+            <option>Room1</option>
+            <option>Room2</option>
+        </select>
+        <br>
+        <select class="select">
+            <option>Tag1</option>
+            <option>Tag2</option>
+            <option>Tag3</option>
+        </select>
+    </div>
+    <div class="buttons">
+        <input type="button" value="Start search" id="start">
+        <input type="button" value="Stop search" id="stop">
+    </div>
+</body>
+<script src="/script.js"></script>
+</html>
