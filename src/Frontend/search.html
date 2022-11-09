@@ -29,31 +29,50 @@
         <h1 id="titulo">Mirage Tracking System</h1>
     </header>
     <div class="content">
-            <section>
-                <aside>
-                    <canvas width="500px" height="350px" id="trackingMap">
-                        Your browser does not support the canvas element. Please use a different browser.
-                    </canvas>
-                </aside>
-            </section>
-    </div>
-    <div class="boxes">
-        <select class="select">
-            <option>Room1</option>
-            <option>Room2</option>
-        </select>
-        <br>
-        <select class="select">
-            <option>All Tags</option>
-            <option>Tag1</option>
-            <option>Tag2</option>
-            <option>Tag3</option>
-        </select>
-    </div>
-    <div class="buttons">
-        <input type="button" value="Start search" id="start">
-        <input type="button" value="Stop search" id="stop">
+        <table>
+            <tr>
+              <th>Room</th>
+              <th>Tag</th>
+              <th>Status</th>
+              <th>Refresh Rate (s)</th>
+            </tr>
+            <tr>
+              <td>Room1</td>
+              <td>Tag1</td>
+              <td>Online</td>
+              <td>60</td>
+            </tr>
+            <tr>
+              <td>Room1</td>
+              <td>Tag2</td>
+              <td>Offline</td>
+              <td>1200</td>
+            </tr>
+            <tr>
+              <td>Room1</td>
+              <td>Tag3</td>
+              <td>Online</td>
+              <td>60000</td>
+            </tr>
+            <tr>
+              <td>Room2</td>
+              <td>Tag4</td>
+              <td>Online</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td>Room3</td>
+              <td>Tag5</td>
+              <td>Online</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td>Room4</td>
+              <td>Tag1</td>
+              <td>Online</td>
+              <td>5</td>
+            </tr>
+        </table>
     </div>
 </body>
-<script src="/script.js"></script>
 </html>
