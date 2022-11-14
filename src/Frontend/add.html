@@ -11,15 +11,15 @@
 <body>
     <div class="sidebar">
         <div class="icons">
-            <a class="active" href="/index.html">
+            <a href="/index.html">
                 <img src="https://img.icons8.com/ios-glyphs/512/home.png" width="35px">
                 Home
             </a>
             <a href="/search.html">
                 <img src="https://img.icons8.com/material/512/search.png" width="35px">
                 Search
-            </a>
-            <a href="/add.html">
+            </a>            
+            <a class="active" href="/add.html">
                 <img src="https://img.icons8.com/ios-glyphs/512/filled-plus-2-math.png" width="35px">
                 Add new
             </a>
@@ -33,31 +33,24 @@
         <h1 id="titulo">Mirage Tracking System</h1>
     </header>
     <div class="content">
-            <section>
-                <aside>
-                    <canvas width="500px" height="350px" id="trackingMap">
-                        Your browser does not support the canvas element. Please use a different browser.
-                    </canvas>
-                </aside>
-            </section>
-    </div>
-    <div class="boxes">
-        <select class="select">
-            <option>Room1</option>
-            <option>Room2</option>
-        </select>
-        <br>
-        <select class="select">
-            <option>All Tags</option>
-            <option>Tag1</option>
-            <option>Tag2</option>
-            <option>Tag3</option>
-        </select>
-    </div>
-    <div class="buttons">
-        <input type="button" value="Start search" id="start">
-        <input type="button" value="Stop search" id="stop">
+        <div class="icons">
+            <div class="content">
+                <div class="botoes_criados">
+                    <button class="btn btn-primary">
+                        <img src="https://img.icons8.com/material/512/user-male-circle--v1.png" width="120px">
+                        New Room
+                    </button>
+                    <button class="btn btn-primary">
+                        <img src="https://img.icons8.com/material/512/search.png" width="120px">
+                        New Beacon
+                    </button>
+                    <button class="btn btn-primary">
+                        <img src="https://img.icons8.com/ios-glyphs/512/home.png" width="120x">
+                        New Tag
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
-<script src="/script.js"></script>
 </html>

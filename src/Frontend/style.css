@@ -42,23 +42,33 @@
 .buttons{
     text-align: center;
 }
-#trackingMap{
-    border-style: dotted;
-    border-color: black;
-}
-#titulo{
-    padding: 1px 16px;
-    margin-left: auto;
-    text-align: center;
-    font-size: 50px;
-    font-family: "Times New Roman", Times, serif;
-    color: rgb(84, 133, 255);
-}
-#start{
+.loginSidebar{
+    width:300px;
     background-color: rgb(84, 133, 255);
+    height:100%;
+    float:left;
+    position:fixed;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
 }
-#stop{
-    background-color: rgb(255, 176, 176);
+.loginContent{
+    margin-left: 50%;
+    padding: 1px 16px;
+    float: left;
+    text-align: center;
+}
+.loginIcons{
+    text-align: center;
+    line-height: 100px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); 
+    font-size: 30px;
+}
+.botoes_criados{
+    line-height: 150px;
+    text-align: center;
 }
 table {
     font-family: arial, sans-serif;
@@ -91,33 +101,6 @@ tr:nth-child(even) {
       float: none;
     }
 }
-.loginSidebar{
-    width:300px;
-    background-color: rgb(84, 133, 255);
-    height:100%;
-    float:left;
-    position:fixed;
-    overflow: auto;
-    margin: 0;
-    padding: 0;
-}
-.loginContent{
-    margin-left: 50%;
-    padding: 1px 16px;
-    float: left;
-    text-align: center;
-}
-.loginIcons{
-    text-align: center;
-    line-height: 100px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); 
-    font-size: 30px;
-}
-.botoes{ text-align:center;}
-
-
 @media screen and (max-width: 1050px) {
     .loginSidebar {
       width: 100%;
@@ -127,11 +110,28 @@ tr:nth-child(even) {
     .loginSidebar a {float: left;}
     div.loginContent {text-align: center;}
 }
-  
-  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+
 @media screen and (max-width: 400px) {
     .loginSidebar a {
       text-align: center;
       float: none;
     }
+}
+#trackingMap{
+    border-style: dotted;
+    border-color: black;
+}
+#titulo{
+    padding: 1px 16px;
+    margin-left: auto;
+    text-align: center;
+    font-size: 50px;
+    font-family: "Times New Roman", Times, serif;
+    color: rgb(84, 133, 255);
+}
+#start{
+    background-color: rgb(84, 133, 255);
+}
+#stop{
+    background-color: rgb(255, 176, 176);
 }
