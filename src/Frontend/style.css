@@ -15,7 +15,7 @@
     text-decoration: none;
   }
 .sidebar a.active {
-    background-color: rgb(31, 160, 220);
+    background-color: rgb(96, 181, 215);
     color: black;
   }
 .sidebar a:hover:not(.active) {
