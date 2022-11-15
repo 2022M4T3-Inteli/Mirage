@@ -139,6 +139,7 @@ tr:nth-child(even) {
     div.loginContent{
         margin-left: 0;
     }
+}
 @media screen and (max-width: 400px) {
     .loginSidebar a {
       text-align: center;
