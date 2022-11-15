@@ -52,4 +52,11 @@ setInterval(draw, 10)
 
 
 function change_url(state){history.pushState({}, null, state);}
-  
+
+
+function direcionar_url(){
+    var url = window.location.href;
+    var room = $("#rooms option:selected").val();
+    var tag = $("#tags option:selected").val();
+    window.location = url + "/" + room + "/" + tag;
+}
