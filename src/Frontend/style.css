@@ -3,6 +3,7 @@
     --sidebar-hover: azure;
     --sidebar-active: rgb(96, 181, 215);
     --font: "Times New Roman", Times, serif;
+    --button: #007bff
 }
 
 .sidebar{
@@ -21,15 +22,15 @@
     color: black;
     padding: 16px;
     text-decoration: none;
-  }
+}
 .sidebar a.active {
     background-color: var(--sidebar-active);
     color: black;
-  }
+}
 .sidebar a:hover:not(.active) {
     background-color: var(--sidebar-hover);
     color: black;
-  }
+}
 .sidebarIcons{
     text-align: center;
     line-height: 100px;
@@ -63,31 +64,37 @@
     text-align: center;
     width:130px;
 }
+.forms{
+    line-height: 50px;
+    font-size: larger;
+}
+.formsInput{
+    background-color: var(--sidebar-hover);
+    font-size: large;
+    line-height: 30px;
+}
 .loginSidebar{
-    width:300px;
+    width:25%;
     background-color: var(--sidebar);
     height:100%;
     float:left;
     position:fixed;
-    overflow: auto;
-    margin: 0;
-    padding: 0;
 }
 .loginContent{
-    margin-left: 50%;
-    padding: 1px 16px;
-    float: left;
+    margin-left: 25%;
     text-align: center;
 }
-.loginIcons{
+.loginSidebarItens{
     text-align: center;
-    line-height: 100px;
     position: relative;
     top: 50%;
     transform: translateY(-50%); 
     font-size: 30px;
 }
-
+.loginIcon{
+    text-align: center;
+    width: 200px;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -102,35 +109,36 @@ tr:nth-child(even) {
     background-color: var(--sidebar-hover);
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
+        width: 100%;
+        height: auto;
+        position: relative;
     }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
-}
-  
-  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
     .sidebar a {
-      text-align: center;
-      float: none;
+        float: left;
     }
-}
-@media screen and (max-width: 1050px) {
+    div.content {
+        margin-left: 0;
+    }
     .loginSidebar {
       width: 100%;
       height: auto;
       position: relative;
     }
-    .loginSidebar a {float: left;}
-    div.loginContent {text-align: center;}
+    .loginSidebarItens{
+        transform: translateY(0);
+        font-size: 20px;
+    }
+    .loginIcon{
+        width: 100px;
+    }
+    div.loginContent{
+        margin-left: 0;
+    }
 }
-
 @media screen and (max-width: 400px) {
-    .loginSidebar a {
+    .sidebar a {
       text-align: center;
       float: none;
     }
@@ -140,16 +148,14 @@ tr:nth-child(even) {
     border-color: black;
 }
 #titulo{
-    padding: 1px 16px;
-    margin-left: auto;
     text-align: center;
     font-size: 50px;
     font-family: var(--font);
-    color: var(--sidebar);
+    color: var(--button);
 }
-#start{
-    background-color: var(--sidebar);
-}
-#stop{
-    background-color: rgb(255, 176, 176);
+#subtitulo{
+    font-size: 30px;
+    font-family: var(--font);
+    color: var(--button);
+    font-weight: bolder;
 }
