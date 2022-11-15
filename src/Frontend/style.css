@@ -83,6 +83,10 @@
 .loginContent{
     margin-left: 25%;
     text-align: center;
+    font-size: 50px;
+    font-family: "Times New Roman", Times, serif;
+    color: rgb(84, 133, 255);
+    padding-left: 11%;
 }
 .loginSidebarItens{
     text-align: center;
@@ -136,12 +140,32 @@ tr:nth-child(even) {
     div.loginContent{
         margin-left: 0;
     }
-}
 @media screen and (max-width: 400px) {
     .sidebar a {
       text-align: center;
       float: none;
     }
+    #titulo{
+        padding-left: 0px;
+    }
+}
+
+#tableRoom{
+    /* background-color: red; */
+    position: relative;
+    text-align: center;
+    float:initial;
+}
+
+/* table hover */
+table tr:hover {
+    background-color: rgb(218, 227, 250);
+    color: rgb(0, 0, 0);
+}
+
+/* allign tr text */
+table tr td {
+    text-align: center;
 }
 #trackingMap{
     border-style: dotted;
