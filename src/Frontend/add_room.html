@@ -11,7 +11,7 @@
 <body>
     <div class="sidebar">
         <div class="sidebarIcons">
-            <a class="active" href="/index.html">
+            <a href="/index.html">
                 <img class="icons" src="https://img.icons8.com/ios-glyphs/512/home.png">
                 Home
             </a>
@@ -33,32 +33,14 @@
         <h1 id="titulo">Mirage Tracking System</h1>
     </header>
     <div class="content">
-            <section>
-                <aside>
-                    <canvas width="500px" height="350px" id="trackingMap">
-                        Your browser does not support the canvas element. Please use a different browser.
-                    </canvas>
-                </aside>
-            </section>
-    </div>
-    <div class="boxes">
-        <select class="select" id="rooms" onchange="direcionar_url()">
-            <option>Room1</option>
-            <option>Room2</option>
-        </select>
-        <br>
-        <select class="select" id="tags" onchange="direcionar_url()">
-            <option>All_Tags</option>
-            <option>Tag1</option>
-            <option>Tag2</option>
-            <option>Tag3</option>
-        </select>
-    </div>
-    <div class="buttons">
-        <input type="button" value="Start search" id="start">
-        <input type="button" value="Stop search" id="stop">
+            <h2>Nova sala</h2>
+            <label for="nome_sala">Nome da sala:</label>
+            <input type="text" id="nome_sala" name="nome_sala">
+            <br>
+            <label for="planta_sala">Nome da sala:</label>
+            <input type="file" id="planta_sala" name="planta_sala">
+            <br>
+            <input type="submit" value="Submit">
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="/script.js"></script>
 </html>
