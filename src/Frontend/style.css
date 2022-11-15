@@ -129,17 +129,10 @@ tr:nth-child(even) {
       height: auto;
       position: relative;
     }
-    .loginSidebarItens{
-        transform: translateY(0);
-        font-size: 20px;
-    }
-    .loginIcon{
-        width: 100px;
-    }
-    div.loginContent{
-        margin-left: 0;
-    }
+    .loginSidebar a {float: left;}
+    div.loginContent {text-align: center;}
 }
+
 @media screen and (max-width: 400px) {
     .loginSidebar a {
       text-align: center;
