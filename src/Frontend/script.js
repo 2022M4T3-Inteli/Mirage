@@ -11,7 +11,7 @@ function drawTag(xPosFun, yPosFun, radiusFun){
 
     ctx.beginPath();
     ctx.arc(xPosFun, yPosFun, radiusFun, 0, Math.PI*2, false);
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "rgb(96, 181, 215)";
     ctx.fill();
     ctx.closePath();
     // adds movement to the sphere
@@ -22,14 +22,14 @@ function drawTag(xPosFun, yPosFun, radiusFun){
 function quadradoVerm(xBeg,yBeg,wid,hei){
     ctx.beginPath();
     ctx.rect(xBeg,yBeg,wid,hei); //beginning from the upper left, X and Y coordinates, width and height
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "#007bff";
     ctx.fill();
 }
 
 function quadradoAzul(){
     ctx.beginPath();
     ctx.rect(160, 10, 100, 40);
-    ctx.strokeStyle = "red";
+    ctx.strokeStyle = "rgb(96, 181, 215)";
     ctx.stroke();
     ctx.closePath();
 }

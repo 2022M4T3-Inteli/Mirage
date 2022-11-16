@@ -1,9 +1,15 @@
 :root{
-    --sidebar: rgb(84, 133, 255);
-    --sidebar-hover: azure;
-    --sidebar-active: rgb(96, 181, 215);
+    /* --sidebar: rgb(84, 133, 255); */
+    /* --sidebar-hover: azure; */
+    /* --sidebar-active: rgb(96, 181, 215); */
     --font: "Times New Roman", Times, serif;
-    --button: #007bff
+    --button: #007bff;
+    /* --table-hover: rgb(218, 227, 250); */
+--sidebar: #7cc9ffff;
+--sidebar-hover: #6cade2ff;
+--sidebar-active: #578cbdff;
+/* --: #496584ff; */
+--table-hover: #c7c7c7ff;
 }
 
 .sidebar{
@@ -16,11 +22,15 @@
     margin: 0;
     padding: 0;
     font-family: var(--font);
+    border-top-left-radius:0%;
+    border-top-right-radius:5%;
+    border-bottom-left-radius:0%;
+    border-bottom-right-radius:5%;
 }
 .sidebar a {
     display: block;
     color: black;
-    padding: 16px;
+    padding: 10%;
     text-decoration: none;
 }
 .sidebar a.active {
@@ -52,6 +62,9 @@
 .select{
     text-align: center;
     width: 300px;
+    border-radius: 8px;
+    background-color: var(--sidebar-hover);
+    color: white;
 }
 .buttons{
     text-align: center;
@@ -72,6 +85,13 @@
     background-color: var(--sidebar-hover);
     font-size: large;
     line-height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--button);
+    color: white;
+}
+.centralize{
+    text-align: center;
+    margin-left: 15%;
 }
 .loginSidebar{
     width:25%;
@@ -107,23 +127,25 @@ td, th {
 }
 tr:nth-child(even) {
     background-color: var(--sidebar-hover);
+    color:white
 }
 
 table tr:hover {
-    background-color: rgb(218, 227, 250);
-    color: rgb(0, 0, 0);
+    background-color: var(--table-hover);
+    color: black;
 }
-
-/* allign tr text */
 table tr td {
     text-align: center;
 }
-
 @media screen and (max-width: 1000px) {
     .sidebar {
         width: 100%;
         height: auto;
         position: relative;
+        border-top-left-radius:0%;
+        border-top-right-radius:0%;
+        border-bottom-left-radius:5%;
+        border-bottom-right-radius:5%;
     }
     .sidebar a {
         float: left;
@@ -146,11 +168,23 @@ table tr td {
     div.loginContent{
         margin-left: 0;
     }
+    .centralize{
+        margin-left: 0;
+    }
 }
 @media screen and (max-width: 400px) {
     .sidebar a {
       text-align: center;
       float: none;
+    }
+    .sidebar{
+        border-top-left-radius:5%;
+        border-top-right-radius:5%;
+        border-bottom-left-radius:5%;
+        border-bottom-right-radius:5%;
+    }
+    .centralize{
+        margin-left: 0;
     }
 }
 #trackingMap{
@@ -169,9 +203,7 @@ table tr td {
     color: var(--button);
     font-weight: bolder;
 }
-
 #tableRoom{
-    /* background-color: red; */
     position: relative;
     text-align: center;
     float:initial;
