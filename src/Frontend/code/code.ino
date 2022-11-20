@@ -72,6 +72,7 @@ void onFtmReport(arduino_event_t *event) {
   if (ftmSuccess) {
     // The estimated distance in meters may vary depending on some factors (see README file)
     // Serial.printf("FTM Estimate: Distance RAW: %.4f,Distance: %.4f m, Return Time: %u ns\n", (float)report->dist_est, (float)(report->dist_est - 4010) / 100, report->rtt_est);
+    
     dist = report->rtt_est;
     Serial.println(dist);
     if( dist>=200 && dist<280 ){
