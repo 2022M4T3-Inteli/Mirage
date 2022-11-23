@@ -11,7 +11,7 @@ function drawTag(xPosFun, yPosFun, radiusFun){
 
     ctx.beginPath();
     ctx.arc(xPosFun, yPosFun, radiusFun, 0, Math.PI*2, false);
-    ctx.fillStyle = "rgb(96, 181, 215)";
+    ctx.fillStyle = "#17a2b8";
     ctx.fill();
     ctx.closePath();
     // adds movement to the sphere
@@ -29,7 +29,7 @@ function quadradoVerm(xBeg,yBeg,wid,hei){
 function quadradoAzul(){
     ctx.beginPath();
     ctx.rect(160, 10, 100, 40);
-    ctx.strokeStyle = "rgb(96, 181, 215)";
+    ctx.strokeStyle = "#17a2b8";
     ctx.stroke();
     ctx.closePath();
 }
@@ -43,8 +43,6 @@ function draw(){
     quadradoVerm(canvas.width*0.05,canvas.height*0.05,30,30);
     quadradoVerm(canvas.width*0.95,canvas.height*0.05,-30,30);
     quadradoVerm((canvas.width)/2,canvas.height*0.95,-30,-30);
-    
-    // quadradoAzul();
 }
 
 setInterval(draw, 10)
@@ -59,4 +57,18 @@ function direcionar_url(){
     var room = $("#rooms option:selected").val();
     var tag = $("#tags option:selected").val();
     window.location = url + "/" + room + "/" + tag;
+}
+
+function alerta(){
+    window.location.reload();
+    document.getElementById("alert").style.display = "block";
+}
+
+function home_page(){
+    document.getElementById("alert").style.display = "block";
+}
+
+function close_alert(){
+    document.getElementById("alert").style.display = "none";
+    window.location.href = "/Frontend/home.html";
 }

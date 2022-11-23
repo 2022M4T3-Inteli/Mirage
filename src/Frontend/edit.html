@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./public/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Mirage Add Beacon</title>
+    <title>Mirage Edit</title>
 </head>
 <body class="document">
     <div class="sidebar">
@@ -23,7 +23,7 @@
                 <img class="icons" src="https://img.icons8.com/ios-glyphs/512/filled-plus-2-math.png">
                 Add new
             </a>
-            <a href="/Frontend/edit.html">
+            <a class="active" href="/Frontend/edit.html">
                 <img class="icons" src="https://img.icons8.com/ios-glyphs/512/pencil.png">
                 Edit
             </a>
@@ -37,28 +37,41 @@
             </a>
         </div>
     </div>
-    <header class="centralize">
-        <div class="titulo grey-color">Mirage Tracking System</div>
-    </header>
-    <div class="content">
-        <h2 class="subtitulo grey-color">Novo beacon</h2>
-        <div class="forms">
-            <label for="nome_beacon">Nome do beacon:</label>
-            <input class="btn btn-outline-secondary" type="text" id="nome_beacon" name="nome_beacon">
-            <br>
-            <label for="sala_inserida">Sala em que o beacon está inserido:</label>
-            <input class="btn btn-outline-secondary" type="text" id="sala_inserida" name="sala_inserida">
-            <br>
-            <input type="button" value="Adicionar" class="btn btn-secondary" onclick="home_page()">
-        </div>
-        <span class="badge badge-pill badge-secondary">
-            Importante: É necessário inserir os beacons nas posições que foram indicadas pelo manual de instalação
-        </span>
-    </div>
-    <div class="alert success-alert" id="alert">
-        Sucess to add the beacon!
-        <a class="close" onclick="close_alert()">&times;</a>
+    <div class="centralize">
+        <header>
+            <div class="titulo primary-color">Edit</div>
+        </header>
+            <div class="contentAddIcons">
+                <select class="btn btn-primary">
+                    <option>Room1</option>
+                    <option>Room2</option>
+                </select>
+                <a href="/Frontend/add_room.html">
+                    <button class="btn btn-outline-primary">
+                        Edit Room
+                    </button>
+                </a>
+                <br>
+                <select class="btn btn-secondary">
+                    <option>Beacon1</option>
+                    <option>Beacon2</option>
+                </select>
+                <a href="/Frontend/add_beacon.html">
+                    <button class="btn btn-outline-secondary">
+                        Edit Beacon
+                    </button>
+                </a>
+                <br>
+                <select class="btn btn-info">
+                    <option>Tag1</option>
+                    <option>Tag2</option>
+                </select>
+                <a href="/Frontend/add_tag.html">
+                    <button class="btn btn-outline-info">
+                        Edit Tag
+                    </button>
+                </a>
+            </div>
     </div>
 </body>
-<script src="Backend/script.js"></script>
 </html>

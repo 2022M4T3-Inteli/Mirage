@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./public/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Mirage Add Beacon</title>
+    <title>Mirage Tracking System</title>
 </head>
 <body class="document">
     <div class="sidebar">
         <div class="sidebarIcons">
-            <a href="/Frontend/home.html">
+            <a class="active" href="/Frontend/home.html">
                 <img class="icons" src="https://img.icons8.com/ios-glyphs/512/home.png">
                 Home
             </a>
@@ -38,27 +38,35 @@
         </div>
     </div>
     <header class="centralize">
-        <div class="titulo grey-color">Mirage Tracking System</div>
+        <h1 class="titulo info-color">Mirage Tracking System</h1>
     </header>
     <div class="content">
-        <h2 class="subtitulo grey-color">Novo beacon</h2>
-        <div class="forms">
-            <label for="nome_beacon">Nome do beacon:</label>
-            <input class="btn btn-outline-secondary" type="text" id="nome_beacon" name="nome_beacon">
-            <br>
-            <label for="sala_inserida">Sala em que o beacon está inserido:</label>
-            <input class="btn btn-outline-secondary" type="text" id="sala_inserida" name="sala_inserida">
-            <br>
-            <input type="button" value="Adicionar" class="btn btn-secondary" onclick="home_page()">
-        </div>
-        <span class="badge badge-pill badge-secondary">
-            Importante: É necessário inserir os beacons nas posições que foram indicadas pelo manual de instalação
-        </span>
+            <section>
+                <aside>
+                    <canvas width="500px" height="350px" id="trackingMap">
+                        Your browser does not support the canvas element. Please use a different browser.
+                    </canvas>
+                </aside>
+            </section>
     </div>
-    <div class="alert success-alert" id="alert">
-        Sucess to add the beacon!
-        <a class="close" onclick="close_alert()">&times;</a>
+    <div class="boxes">
+        <select class="select" id="rooms" onchange="direcionar_url()">
+            <option>Room1</option>
+            <option>Room2</option>
+        </select>
+        <br>
+        <select class="select" id="tags" onchange="direcionar_url()">
+            <option>All_Tags</option>
+            <option>Tag1</option>
+            <option>Tag2</option>
+            <option>Tag3</option>
+        </select>
     </div>
+    <center>
+        <input type="button" value="Start search" class="btn btn-primary">
+        <input type="button" value="Stop search" class="btn btn-secondary">
+    </center>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="Backend/script.js"></script>
 </html>

@@ -1,51 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./public/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Mirage Tracking System</title>
+    <title>Mirage Add Room</title>
 </head>
-<body>
+<body class="document">
     <div class="sidebar">
         <div class="sidebarIcons">
-            <a href="/index.html">
+            <a href="/Frontend/home.html">
                 <img class="icons" src="https://img.icons8.com/ios-glyphs/512/home.png">
                 Home
             </a>
-            <a href="/search.html">
+            <a href="/Frontend/table.html">
                 <img class="icons" src="https://img.icons8.com/material/512/search.png">
                 Search
             </a>            
-            <a href="/add.html">
+            <a href="/Frontend/add.html">
                 <img class="icons" src="https://img.icons8.com/ios-glyphs/512/filled-plus-2-math.png">
                 Add new
             </a>
-            <a href="/login.html">
+            <a href="/Frontend/edit.html">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/pencil.png">
+                Edit
+            </a>
+            <a href="/Frontend/remove.html">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/trash.png">
+                Remove
+            </a>
+            <a href="/Frontend/index.html">
                 <img class="icons" src="https://img.icons8.com/material/512/user-male-circle--v1.png">
                 Profile
             </a>
         </div>
     </div>
     <header class="centralize">
-        <h1 id="titulo">Mirage Tracking System</h1>
+        <div class="titulo primary-color">Mirage Tracking System</div>
     </header>
     <div class="content">
-        <h2 id="subtitulo">Nova sala</h2>
+        <div class= "subtitulo primary-color">Room's registration</div>
         <div class="forms">
-            <label for="nome_sala">Nome da sala:</label>
-            <input class="formsInput" type="text" id="nome_sala" name="nome_sala">
+            <label for="nome_sala">Room's name:</label>
+            <input class="btn btn-outline-primary" type="text" id="nome_sala" name="nome_sala">
             <br>
-            <!-- <input type="file" id="planta_sala" name="planta_sala">
-            <br> -->
-            <label for="planta_sala">Insira o link para o arquivo:</label>
-            <input class="formsInput" type="text" id="planta_sala" name="planta_sala">
+            <label for="planta_sala">Input here the ground plan file:</label>
+            <input class="formsInput" type="file" id="planta_sala" name="planta_sala">
             <br>
-            <input type="button" value="Adicionar" class="btn btn-primary">   
+            <input type="button" value="Adicionar" class="btn btn-primary" onclick="home_page()">   
         </div>
-        <p>Importante: suba o link da imagem da planta para que seja anexada à sala</p>
     </div>
 </body>
+<script src="Backend/script.js"></script>
 </html>
