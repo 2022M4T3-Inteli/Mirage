@@ -42,7 +42,8 @@ function direcionar_url(){
 
 
 var posicao_beacon = -(canvas.width/2) + 10;
-var valor_output = $('#sensor').text();
+var valor_output = document.getElementById('sensor').innerText;
+// var valor_output = $('#sensor').text();
 valor_output = parseInt(valor_output);
 if(valor_output >= 70){
     valor_output = 70;
