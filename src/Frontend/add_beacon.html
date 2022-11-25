@@ -49,7 +49,10 @@
             <label for="sala_inserida">Sala em que o beacon está inserido:</label>
             <input class="btn btn-outline-secondary" type="text" id="sala_inserida" name="sala_inserida">
             <br>
-            <input type="button" value="Adicionar" class="btn btn-secondary" onclick="home_page()">
+            <input type="button" value="Add" class="btn btn-secondary" onclick="home_page()">
+            <a href="/Frontend/home.html">
+                <input type="button" value="Cancel" class="btn btn-outline-danger">
+            </a>
         </div>
         <span class="badge badge-pill badge-secondary">
             Importante: É necessário inserir os beacons nas posições que foram indicadas pelo manual de instalação
@@ -60,5 +63,5 @@
         <a class="close" onclick="close_alert()">&times;</a>
     </div>
 </body>
-<script src="Backend/script.js"></script>
+<script src="../Backend/script.js"></script>
 </html>
