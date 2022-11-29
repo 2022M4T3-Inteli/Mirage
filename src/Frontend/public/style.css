@@ -206,6 +206,12 @@
 .sidebar-color{
   color: var(--sidebar);
 }
+.logoFooter{
+  width: 10%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -274,6 +280,11 @@ table tr td {
   .alert{
     width: 100%;
   }
+  .logoFooter{
+    position: relative;
+    text-align: center;
+    width: 13%;
+  }
 }
 @media screen and (max-width: 400px) {
   .sidebar a {
@@ -289,11 +300,10 @@ table tr td {
   .centralize {
     margin-left: 0;
   }
+  .logoFooter{
+    width:20%;
+  }
 }
-
-
-
-
 .simple-alert {
   background-color: #ebebeb;
   border-left: 5px solid #6c6c6c;
