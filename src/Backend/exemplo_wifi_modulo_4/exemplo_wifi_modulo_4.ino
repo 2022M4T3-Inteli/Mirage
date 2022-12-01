@@ -366,7 +366,7 @@ void setup() {
   Serial.begin(115200);
   WiFi.mode(WIFI_STA); 
   t = new Triangulacao(DIST_PONTO_A1y, DIST_PONTO_A3x, 1, 1, 1);
-  Serial.println(t->pontoXMedio() e t->pontoYMedio());
+  Serial.println("X: " + String(t->pontoXMedio()) + "\nY: " + String(t->pontoYMedio()));
 }
 
 void loop() {
