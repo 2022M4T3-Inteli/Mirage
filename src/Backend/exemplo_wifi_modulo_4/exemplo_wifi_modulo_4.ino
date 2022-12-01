@@ -111,8 +111,8 @@ class Ponto{
 Triangulacao *t = NULL;
 
 //Vetores com nomes de rede e senhas dos Access Points
-const char* SSIDS[4]={"Inteli-COLLEGE","B1G4","B2G4","B3G4"};
-const char* PWD[4]={"QazWsx@123","G4","G4","G4"};
+const char* SSIDS[4]={"Inteli-COLLEGE","BEACON1-G4","BEACON2-G4","BEACON3-G4"};
+const char* PWD[4]={"QazWsx@123","GRUPO4","GRUPO4","GRUPO4"};
 //Variável que continua ou não o MENU 2
 int parar=0;
 String guardaRede;

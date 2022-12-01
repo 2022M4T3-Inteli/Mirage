@@ -1,7 +1,7 @@
 #include "WiFi.h"
 // Change the SSID and PASSWORD here if needed
-const char *WIFI_FTM_SSID = "B2G4";
-const char *WIFI_FTM_PASS = "G4";
+const char *WIFI_FTM_SSID = "BEACON2G4";
+const char *WIFI_FTM_PASS = "GRUPO4";
 
 void setup()
 {
