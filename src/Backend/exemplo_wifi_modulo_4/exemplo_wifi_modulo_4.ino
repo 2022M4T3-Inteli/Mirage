@@ -2,13 +2,120 @@
 #include <HTTPClient.h>
 #include <WiFi.h>
 
+// #define SEVIDOR_ENVIO "https://ur524n-3000.preview.csb.app/teobaldo"
+
+// Número de access points (beacons)
+#define NB_APS 3
+#define MAX_PONTOS 10
+// Distância 
+#define DIST_PONTO_A1y 0
+#define DIST_PONTO_A3x 8
+// Classe ponto apenas para encapsular as coordenadas x e Y e facilitar a construção do ARRAY
+class Ponto{
+  private:
+    float coordX = 0;
+    float coordY = 0;
+  public:
+    // Constroi o ponto colocando os valores nos atributos
+    Ponto(float x,float y){
+      coordX = x;
+      coordY = y;
+    };
+    Ponto(){    }; // Construtor vazio por requisição do compilador
+    void put( float x, float y){ coordX = x; coordY = y;};
+    float x(){ return coordX;};
+    float y(){ return coordY;};
+};
+// Classe representa um componente que armazena os 3 pontos (nos objetos da classe Ponto)
+// assim como as 3 distâncias a cada um desses pontos
+// Para facilitar, chamamos os beacons de A1, A2, A3, etc mas eles são armazenados na verdade
+// nos pontos 0,1, 2, etc dos respectivos vetores onde eles são armazenados
+//  A2(0,y2)  |\
+//            | \->dA2
+//            |  \
+//            |   \ b(xMedio,yMedio)
+//            |   /
+//            |  /->dA1
+//   A1(0,0)  | /                       A3(x3,0)
+//            --------------------------|-----
+  // Funções extras para construir o objeto sem usar o construtor
+ class Triangulacao{
+  private:
+    Ponto listaPontos[MAX_PONTOS]; // Lista de objetos Ponto com as coordenadas dos 3 pontos
+    float listaDistancias[MAX_PONTOS]; // Lista das distancias a cada um dos pontos A1, A2 e A3
+  float yPonto_A1_A2(){   // Formula que calcula a coordenada y do Ponto B usando apenas A1 e A2
+      float dA1_2 = pow(listaDistancias[0],2);
+      float dA2_2 = pow(listaDistancias[1],2);
+      float y2_2  = pow(listaPontos[1].y(),2);
+      float y2_x2 = 2*(listaPontos[1].y());
+      if(y2_x2==0){
+        y2_x2 = 1;
+      }
+      float yb = (dA1_2 - dA2_2 + y2_2) / y2_x2;
+      return(yb);
+  };
+  float xPonto_A1_A2(){   // Formula que calcula a coordenada x do Ponto B usando apenas A1 e A2
+      float dA1_2 = pow(listaDistancias[0],2);
+      float yb = yPonto_A1_A2();
+      float xb = sqrt(abs(dA1_2 - yb));
+      return(xb);
+  };
+  float yPonto_A1_A3(){   // Formula que calcula a coordenada x do Ponto B usando apenas A1 e A3
+      float dA1_2 = pow(listaDistancias[0],2);
+      float dA2_2 = pow(listaDistancias[2],2);
+      float y2_2  = pow(listaPontos[2].x(),2);
+      float y2_x2 = 2*(listaPontos[2].x());
+      if(y2_x2==0){
+        y2_x2 = 1;
+      }
+      float yb = (dA1_2 - dA2_2 + y2_2) / y2_x2;
+      return(yb);
+  };
+  float xPonto_A1_A3(){   // Formula que calcula a coordenada y do Ponto B usando apenas A1 e A3
+      float dA1_2 = pow(listaDistancias[0],2);
+      float yb = yPonto_A1_A3();
+      float xb = sqrt(abs(dA1_2 - yb));
+      return(xb);
+  };
+  public:
+    Triangulacao(){};
+  // Constroi o componente (objeto) de triangulação preenchendo a posição dos 2 beacons da ponta
+  // o central é sempre (0,0) e as 3 distancias aos 3 pontos A1, A2 e A3
+    Triangulacao(float yA1,float xA3,float d1, float d2, float d3){
+      adicionaPonto(0,0,0);
+      adicionaPonto(1,0,yA1);
+      adicionaPonto(2,xA3,0);
+      putDistancia(0,d1);
+      putDistancia(1,d2);
+      putDistancia(2,d3);
+    };
+  void adicionaPonto(int nr,float x, float y){
+        listaPontos[nr].put(x,y);
+  };
+  void putDistancia(int nrPonto, float d){
+        listaDistancias[nrPonto] = d;
+  };
+  /////// Calculo dos valores de x e y medios combinando os valores achados atraves de A1 e A2 com A1 e A3
+  float pontoXMedio(){
+    Serial.println("pontoXMedio");
+    float xMedio = (xPonto_A1_A2() + xPonto_A1_A3())/2;
+    return(xMedio);
+  };
+  float pontoYMedio(){
+     Serial.println("pontoYMedio");
+    float yMedio = (yPonto_A1_A2() + yPonto_A1_A3())/2;
+    return(yMedio);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+};
+Triangulacao *t = NULL;
+
 //Vetores com nomes de rede e senhas dos Access Points
-// const char* SSIDS[4]={"Inteli-COLLEGE","beacon1_G4","beacon2_G4","beacon3_G4"};
-// const char* PWD[4]={"QazWsx@123","G4","G4","G4"};
-const char* SSIDS[4]={"SHARE-RESIDENTE","beacon1_G4","beacon2_G4","beacon3_G4"};
-const char* PWD[4]={"Share@residente","G4","G4","G4"};
+const char* SSIDS[4]={"Inteli-COLLEGE","B1G4","B2G4","B3G4"};
+const char* PWD[4]={"QazWsx@123","G4","G4","G4"};
 //Variável que continua ou não o MENU 2
 int parar=0;
+String guardaRede;
 //Variável para medir a distância
 int distancia[3]={0,0,0};
 int indice=0;
@@ -27,37 +134,70 @@ bool ftmSuccess = true;
 void postDataToServer() {
  
   Serial.println("Posting JSON data to server...");
-  if( WiFi.status() == WL_CONNECTED ){
-    HTTPClient client;
-
-    // Especifica a URL e faz a requisição
-    client.begin("https://URL/");
-    client.addHeader("Content-Type", "application/json");
-
-    // Especifica uma capacidade fixa para o JSON document
-    const size_t CAPACITY = JSON_OBJECT_SIZE(1);
-    StaticJsonDocument<CAPACITY> doc;
-
-    // O JSON document está vazio, então precisamos mudá-lo
-    // Add nested items to your doc object
-    JsonObject object = doc.to<JsonObject>();
-    object["room"] = "place holder";
-    object["asset"] = "place holder";
-
-    serializeJson(doc, jsonOutput);
-
-    int httpCode = client.POST(String(jsonOutput));
-
-    if (httpCode > 0){
-      String payload = client.getString(); 
-      Serial.println("\nStatuscode: " + String(httpCode));    // Printa o código de status da requisição
-      Serial.println(payload);
-
-      client.end();
-
-    } else {
-      // Serial.println("\nStatuscode: " + String(httpCode));
-      Serial.println("Requisição não completada");
+  // Block until we are able to connect to the WiFi access point
+  HTTPClient http;   
+    
+    // Especifica a URL e o tipo de arquivo da requisição
+    http.begin("https://2rzp92-8080.preview.csb.app/");  
+    http.addHeader("Content-Type", "application/json");
+     
+    StaticJsonDocument<200> doc;
+    // Add values in the document
+    //
+    doc["room"] = "salaTeste";
+    doc["asset"] = distancia[0];
+     // Add an array.
+    //
+    JsonArray data = doc.createNestedArray("data");
+    for(int i=0; i<3; i++)
+    {
+      data.add(distancia[i]);
+    }
+     
+    String requestBody;
+    serializeJson(doc, requestBody);
+    
+    int httpResponseCode = http.POST(requestBody);
+ 
+    if(httpResponseCode>0){
+       
+      String response = http.getString();                       
+       
+      Serial.println(httpResponseCode);   
+      Serial.println(response);
+     
+    }
+     
+}
+void getDataFromServer() {
+ 
+  Serial.println("Pegando dados do Servidor...");
+  // Block until we are able to connect to the WiFi access point
+  HTTPClient http;   
+     
+    http.begin("https://2rzp92-8080.preview.csb.app/");  
+    http.addHeader("Content-Type", "application/json");         
+     
+    StaticJsonDocument<200> doc;
+     
+    int httpResponseCode = http.GET();
+ 
+    if(httpResponseCode>0){
+       
+      String response = http.getString();                       
+       
+      Serial.println(httpResponseCode);   
+      Serial.println(response);
+      deserializeJson(doc, response);
+      int action = doc["action"];
+      String sensor = doc["sensor"];
+      String status1 = doc["status"];
+      //Exemplo no caso de vetores/arrays no JSON
+      //double latitude = doc["data"][0];
+      //double longitude = doc["data"][1];
+      Serial.println(action);
+      Serial.println(sensor);
+      Serial.println(status1);
     }
      
 }
@@ -123,6 +263,7 @@ int menu()
   Serial.println(F("3 - Conectar no beacon 3\n"));
   Serial.println(F("4 - Conectar nos 3 beacons (sequencialmente) \n"));
   Serial.println(F("5 - Conectar no WIFI e enviar dados para o servidor.  \n"));
+  Serial.println(F("6 - Conectar no WIFI e receber dados para o servidor.  \n"));
   //fica aguardando enquanto o usuário nao enviar algum dado
   while(!Serial.available()){};
   //recupera a opção escolhida
@@ -151,7 +292,7 @@ int menu2()
   return (op-48);//do valor lido, subtraimos o 48 que é o ZERO da tabela ascii
 }
 //Função para conectar em APs sem medição FTM
-void Conectar(int rede)
+void EnviarDados(int rede)
 {
   Serial.println("Conectando na rede: ");
   Serial.println(rede);
@@ -165,6 +306,26 @@ void Conectar(int rede)
         Serial.println("WiFi connected");
         //DadosConexao();
         postDataToServer();      
+        parar = menu2();
+      }
+      parar=0;
+      WiFi.disconnect();
+      Serial.println("Desconectei!");
+}
+void ReceberDados(int rede)
+{
+  Serial.println("Conectando na rede: ");
+  Serial.println(rede);
+  WiFi.begin(SSIDS[rede],PWD[rede]);
+      while (WiFi.status() != WL_CONNECTED) {
+        Serial.print("Tentando novamente!");
+        delay(500);
+      }
+      while(parar==0)
+      {
+        Serial.println("WiFi connected");
+        //DadosConexao();
+        getDataFromServer();      
         parar = menu2();
       }
       parar=0;
@@ -204,6 +365,8 @@ void MedirDistancia(int rede){
 void setup() {
   Serial.begin(115200);
   WiFi.mode(WIFI_STA); 
+  t = new Triangulacao(DIST_PONTO_A1y, DIST_PONTO_A3x, 1, 1, 1);
+  Serial.println(t->pontoXMedio() e t->pontoYMedio());
 }
 
 void loop() {
@@ -226,6 +389,11 @@ void loop() {
           Serial.print(i + 1);
           Serial.print(": ");
           Serial.print(WiFi.SSID(i));
+          String teste=WiFi.SSID(i);
+          if(teste=="POCOF3")
+          {
+            guardaRede=teste;
+          }
           Serial.print(" (");
           Serial.print(WiFi.RSSI(i));
           Serial.print(")");
@@ -264,7 +432,12 @@ void loop() {
       break;
     case 5:
       Serial.println("Conectar na internet e enviar dados para o servidor!");
-      Conectar(0);
+      ReceberDados(0);
+      EnviarDados(0);
+      break;
+    case 6:
+      Serial.println("Conectar na internet e receber dados para o servidor!");
+      ReceberDados(0);
       break;
     default:
       Serial.println("Opção fora do padrão!");
@@ -275,11 +448,11 @@ void loop() {
   {
     Serial.println(distancia[i]);
   }
+  Serial.println("Escrevendo letras");
+  for(int i=0;i<3;i++)
+  {
+    Serial.println(guardaRede[i]);
+  }
    
 
 }
-
-// 1. conectar ao beacon 1
-// 2. conectar ao beacon 2
-// 3. conectar ao beacon 3
-// 4. conectar a wifi para enviar dados ao servidor 
