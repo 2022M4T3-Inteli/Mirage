@@ -1,56 +1,49 @@
 const canvas = document.getElementById("trackingMap");
-var ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
-
-let xPos = canvas.width/2;
-let yPos = canvas.height/2;
-let xSpeed = 2;
-let ySpeed = 2;
+let xTamanho = canvas.width;
+let yTamanho = canvas.height;
+let xMetade = xTamanho/2;
+let yMetade = yTamanho/2;
 let radius = 5;
-function drawTag(xPosFun, yPosFun, radiusFun){
+let ladoRetanguloX = xTamanho/30
+let ladoRetanguloY = yTamanho/20
 
+var distancia1 = Math.sqrt((xTamanho**2 + yTamanho**2)/4);
+var distancia2 = Math.sqrt((xTamanho**2 + yTamanho**2)/4);
+var distancia3 = Math.sqrt((xTamanho**2 + yTamanho**2)/4);
+var x = (distancia3**2 - distancia1**2 - xTamanho**2)/(-2*xTamanho);
+var y = (distancia2**2 - distancia1**2 - yTamanho**2)/(-2*yTamanho);
+
+
+function drawTag(xFun, yFun, radiusFun){
     ctx.beginPath();
-    ctx.arc(xPosFun, yPosFun, radiusFun, 0, Math.PI*2, false);
+    ctx.arc(xFun, yFun, radiusFun, 0, Math.PI*2, false);
     ctx.fillStyle = "#17a2b8";
     ctx.fill();
     ctx.closePath();
-    // adds movement to the sphere
-    // xPos += xSpeed;
-    // yPos += ySpeed;
 }
 
-function quadradoVerm(xBeg,yBeg,wid,hei){
+function quadradoAzul(xBeg,yBeg,wid,hei){
     ctx.beginPath();
-    ctx.rect(xBeg,yBeg,wid,hei); //beginning from the upper left, X and Y coordinates, width and height
+    ctx.rect(xBeg,yBeg,wid,hei);
     ctx.fillStyle = "#007bff";
     ctx.fill();
 }
 
-function quadradoAzul(){
-    ctx.beginPath();
-    ctx.rect(160, 10, 100, 40);
-    ctx.strokeStyle = "#17a2b8";
-    ctx.stroke();
-    ctx.closePath();
-}
-
 function draw(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawTag(xPos,yPos,radius);
-    drawTag(xPos+25,yPos-55,radius);
-    drawTag(xPos-70,yPos-105,radius);
-    drawTag(xPos+100,yPos,radius);
-    quadradoVerm(canvas.width*0.05,canvas.height*0.05,30,30);
-    quadradoVerm(canvas.width*0.95,canvas.height*0.05,-30,30);
-    quadradoVerm((canvas.width)/2,canvas.height*0.95,-30,-30);
+    ctx.clearRect(0, 0, xMetade, yMetade);
+    drawTag(x,y,radius);
+    quadradoAzul(0,0,ladoRetanguloX,ladoRetanguloY);
+    quadradoAzul(0,yTamanho-ladoRetanguloY,ladoRetanguloX,ladoRetanguloY);
+    quadradoAzul(xTamanho-ladoRetanguloX,0,ladoRetanguloX,ladoRetanguloY);
 }
 
-setInterval(draw, 10)
+setInterval(draw)
 
-
-
-function change_url(state){history.pushState({}, null, state);}
-
+function change_url(state){
+    history.pushState({}, null, state);
+}
 
 function direcionar_url(){
     var url = window.location.href;
@@ -70,5 +63,5 @@ function home_page(){
 
 function close_alert(){
     document.getElementById("alert").style.display = "none";
-    window.location.href = "/Frontend/home.html";
+    window.location.href = "home";
 }
