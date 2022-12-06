@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./public/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Mirage Add Beacon</title>
 </head>
+
 <body class="document">
     <div class="sidebar">
         <div class="sidebarIcons">
@@ -18,7 +21,7 @@
             <a href="/Frontend/table.html">
                 <img class="icons" src="https://img.icons8.com/material/512/search.png">
                 Search
-            </a>            
+            </a>
             <a href="/Frontend/add.html">
                 <img class="icons" src="https://img.icons8.com/ios-glyphs/512/filled-plus-2-math.png">
                 Add new
@@ -43,8 +46,11 @@
     <div class="content">
         <div class="subtitulo grey-color">Novo beacon</div>
         <div class="forms">
-            <label for="nome_beacon">Nome do beacon:</label>
-            <input class="btn btn-outline-secondary" type="text" id="nome_beacon" name="nome_beacon">
+            <label for="beacon">Beacon:</label>
+            <select class="btn btn-secondary">
+                <option>Beacon1</option>
+                <option>Beacon2</option>
+            </select>
             <br>
             <label for="sala_inserida">Sala em que o beacon está inserido:</label>
             <input class="btn btn-outline-secondary" type="text" id="sala_inserida" name="sala_inserida">
@@ -65,4 +71,5 @@
     <img class="logoFooter" src="https://atech.com.br/wp-content/uploads/2018/04/Logo_Atech-3-e1524245013463.png">
 </body>
 <script src="../Backend/script.js"></script>
+
 </html>
