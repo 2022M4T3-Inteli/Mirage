@@ -3,7 +3,7 @@
 #include <WiFi.h>
 
 // #define SEVIDOR_ENVIO "https://ur524n-3000.preview.csb.app/teobaldo"
-
+#define PINO_BUZZER 1
 // Número de access points (beacons)
 #define NB_APS 3
 #define MAX_PONTOS 10
@@ -199,30 +199,6 @@ void getDataFromServer() {
       Serial.println(sensor);
       Serial.println(status1);
     }
-     
-}
-//Uma função para ler todos os dados da conexão WiFi
-void DadosConexao(){
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
-  Serial.println("Subnet Mask: ");
-  Serial.println(WiFi.subnetMask());
-  Serial.println("Gateway IP: ");
-  Serial.println(WiFi.gatewayIP());
-  Serial.println("DNS IP: ");
-  Serial.println(WiFi.dnsIP());
-  Serial.println("BroadCast: ");
-  Serial.println(WiFi.broadcastIP());
-  Serial.println("MAC address: ");
-  Serial.println(WiFi.macAddress());
-  Serial.println("Network ID: ");
-  Serial.println(WiFi.networkID());
-  Serial.println("PSK: ");
-  Serial.println(WiFi.psk());
-  Serial.println("BSSID: ");
-  Serial.println(WiFi.BSSIDstr());
-  Serial.println("RSSI: ");
-  Serial.println(WiFi.RSSI());
 }
 // FTM report handler with the calculated data from the round trip
 void onFtmReport(arduino_event_t *event) {
@@ -254,27 +230,6 @@ bool getFtmReport(){
 }
 //Função para um Menu de escolha cujo intuito é mostrar todas as possibilidades do Wifi.
 //Conectar separadamente nos APs e depois fazer a triangulação
-int menu()
-{
-  Serial.println(F("\nEscolha uma opção:"));
-  Serial.println(F("0 - Scan de redes"));
-  Serial.println(F("1 - Conectar no beacon 1\n"));
-  Serial.println(F("2 - Conectar no beacon 2\n"));
-  Serial.println(F("3 - Conectar no beacon 3\n"));
-  Serial.println(F("4 - Conectar nos 3 beacons (sequencialmente) \n"));
-  Serial.println(F("5 - Conectar no WIFI e enviar dados para o servidor.  \n"));
-  Serial.println(F("6 - Conectar no WIFI e receber dados para o servidor.  \n"));
-  //fica aguardando enquanto o usuário nao enviar algum dado
-  while(!Serial.available()){};
-  //recupera a opção escolhida
-  int op = (int)Serial.read();
-  //remove os proximos dados (como o 'enter ou \n' por exemplo) que vão por acidente
-  while(Serial.available()) {
-    if(Serial.read() == '\n') break; 
-    Serial.read();
-  }
-  return (op-48);//do valor lido, subtraimos o 48 que é o ZERO da tabela ascii
-}
 //Utilizado na função CONECTAR, para continuar mostrando os dados da conexão enquanto permanecer
 //conectado. 
 int menu2()
@@ -370,89 +325,13 @@ void setup() {
 }
 
 void loop() {
-  int opcao = menu();
-  switch(opcao)
+  Serial.println("Calculando distâncias:");
+  for(int i=1; i<4;i++)
   {
-    case 0:
-    {
-      Serial.println("Escaneando redes!");
-      int n = WiFi.scanNetworks();
-      Serial.println("scan done");
-      if (n == 0) {
-          Serial.println("no networks found");
-      } 
-      else {
-        Serial.print(n);
-        Serial.println(" networks found");
-        for (int i = 0; i < n; ++i) {
-          // Print SSID and RSSI for each network found
-          Serial.print(i + 1);
-          Serial.print(": ");
-          Serial.print(WiFi.SSID(i));
-          String teste=WiFi.SSID(i);
-          if(teste=="POCOF3")
-          {
-            guardaRede=teste;
-          }
-          Serial.print(" (");
-          Serial.print(WiFi.RSSI(i));
-          Serial.print(")");
-          Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN)?" ":"*");
-          delay(10);
-        }
-      }
-      break;
-    }
-    case 1:
-      Serial.println("Conectando no beacon 1!");
-      //Conectar(0);
-      indice=0;
-      MedirDistancia(1);
-      break;
-    case 2:
-      Serial.println("Conectando no beacon 2!");
-      //Conectar(2);
-      indice=1;
-      MedirDistancia(2);
-      break;
-    case 3:
-      Serial.println("Conectando no beacon 3!");
-      //Conectar(3);
-      //WiFi.disconnect();
-      indice=2;
-      MedirDistancia(3);
-      break;
-    case 4:
-      Serial.println("Rotação de beacons!");
-      for(int i=1; i<4;i++)
-      {
-        indice=i-1;
-        MedirDistancia(i);
-      }
-      break;
-    case 5:
-      Serial.println("Conectar na internet e enviar dados para o servidor!");
-      ReceberDados(0);
-      EnviarDados(0);
-      break;
-    case 6:
-      Serial.println("Conectar na internet e receber dados para o servidor!");
-      ReceberDados(0);
-      break;
-    default:
-      Serial.println("Opção fora do padrão!");
-      break;
+    indice=i-1;
+    MedirDistancia(i);
   }
-  Serial.println("Distancias:");
-  for(int i=0;i<3;i++)
-  {
-    Serial.println(distancia[i]);
-  }
-  Serial.println("Escrevendo letras");
-  for(int i=0;i<3;i++)
-  {
-    Serial.println(guardaRede[i]);
-  }
-   
-
+  delay(10000);
+  ReceberDados(0);
+  EnviarDados(0);
 }
