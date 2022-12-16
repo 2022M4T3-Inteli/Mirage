@@ -2,8 +2,11 @@
 #include <HTTPClient.h>
 #include <WiFi.h>
 
+// codigo buzzer
+const int buzzer = 2;
+
 // #define SEVIDOR_ENVIO "https://ur524n-3000.preview.csb.app/teobaldo"
-#define PINO_BUZZER 1
+// #define PINO_BUZZER 1 (ESSE NAO FUI EU ISRAEL QUE FIZ, JA TAVA)
 // Número de access points (beacons)
 #define NB_APS 3
 #define MAX_PONTOS 10
@@ -111,8 +114,8 @@ class Ponto{
 Triangulacao *t = NULL;
 
 //Vetores com nomes de rede e senhas dos Access Points
-const char* SSIDS[4]={"Inteli-COLLEGE","BEACON1-G4","BEACON2-G4","BEACON3-G4"};
-const char* PWD[4]={"QazWsx@123","GRUPO4","GRUPO4","GRUPO4"};
+const char* SSIDS[4]={"Inteli-welcome","Carlinhos","Pablinho2","Pablinho3"};
+const char* PWD[4]={"","Carlinhos","Pablinho2","Pablinho3"};
 //Variável que continua ou não o MENU 2
 int parar=0;
 String guardaRede;
@@ -138,21 +141,22 @@ void postDataToServer() {
   HTTPClient http;   
     
     // Especifica a URL e o tipo de arquivo da requisição
-    http.begin("https://2rzp92-8080.preview.csb.app/");  
+    http.begin("https://24rrfm-3010.preview.csb.app/getdistances");  
     http.addHeader("Content-Type", "application/json");
      
     StaticJsonDocument<200> doc;
     // Add values in the document
     //
-    doc["room"] = "salaTeste";
-    doc["asset"] = distancia[0];
+    doc["dist1"]=distancia[0];
+    doc["dist2"]=distancia[1];
+    doc["dist3"]=distancia[2];
      // Add an array.
     //
-    JsonArray data = doc.createNestedArray("data");
-    for(int i=0; i<3; i++)
-    {
-      data.add(distancia[i]);
-    }
+    // JsonArray data = doc.createNestedArray("data");
+    // for(int i=0; i<3; i++)
+    // {
+    //   data.add(distancia[i]);
+    // }
      
     String requestBody;
     serializeJson(doc, requestBody);
@@ -175,7 +179,7 @@ void getDataFromServer() {
   // Block until we are able to connect to the WiFi access point
   HTTPClient http;   
      
-    http.begin("https://2rzp92-8080.preview.csb.app/");  
+    http.begin("https://24rrfm-3010.preview.csb.app/getdistances");  
     http.addHeader("Content-Type", "application/json");         
      
     StaticJsonDocument<200> doc;
@@ -208,8 +212,8 @@ void onFtmReport(arduino_event_t *event) {
   ftmSuccess = report->status == FTM_STATUS_SUCCESS;
   if (ftmSuccess) {
     // The estimated distance in meters may vary depending on some factors (see README file)
-    distancia[indice]=report->dist_est;
-    Serial.printf("FTM Estimate: Distance RAW: %.4f,Distance: %.4f m, Return Time: %u ns\n", (float)report->dist_est, (float)(report->dist_est-4000) / 10000, report->rtt_est);
+    distancia[indice]= report->dist_est;
+    Serial.printf("FTM Estimate: Distance RAW: %.4f,Distance: %.4f m, Return Time: %u ns\n", (float)report->dist_est, (float)(report->dist_est-4010) / 1000, report->rtt_est);
     // Pointer to FTM Report with multiple entries, should be freed after use
     //free(report->ftm_report_data);
   } else {
@@ -315,13 +319,57 @@ void MedirDistancia(int rede){
   Serial.print(FTM_BURST_PERIOD * 100);
   Serial.println(" ms");
   getFtmReport();
+  delay(2000);
 }
 
 void setup() {
   Serial.begin(115200);
+  pinMode(buzzer, OUTPUT);
   WiFi.mode(WIFI_STA); 
   t = new Triangulacao(DIST_PONTO_A1y, DIST_PONTO_A3x, 1, 1, 1);
   Serial.println("X: " + String(t->pontoXMedio()) + "\nY: " + String(t->pontoYMedio()));
+}
+
+// codigo buzzer
+int getBuzzerStatus(){
+  if (WiFi.status() == WL_CONNECTED) {  //Check WiFi connection status
+
+    Serial.println("Iniciando o GET request do buzzer...");
+    HTTPClient http;
+
+    http.begin("https://24rrfm-3010.preview.csb.app/getbuzzer");  //Specify destination for HTTP request
+    http.addHeader("Content-Type", "application/json");       //Specify content-type header
+
+    StaticJsonDocument<200> doc;
+
+    int httpResponseCode = http.GET();  //Send the actual GET request
+
+    if (httpResponseCode > 0) {
+
+
+      String response = http.getString();  //Get the response to the request
+
+      Serial.println(httpResponseCode);  //Print return code
+      Serial.println(response);          //Print request answer
+
+      deserializeJson(doc, response);
+      int buzzerStatus = doc["status"];
+
+      return buzzerStatus;
+      
+    }
+    else{
+
+      Serial.print("Error on GET request: ");
+      Serial.println(httpResponseCode);
+    }
+
+    http.end();  //Free resources
+
+  }
+  else{
+    Serial.println("Error in WiFi connection");
+  }
 }
 
 void loop() {
@@ -331,7 +379,37 @@ void loop() {
     indice=i-1;
     MedirDistancia(i);
   }
-  delay(10000);
-  ReceberDados(0);
-  EnviarDados(0);
+  delay(1000);
+  // ReceberDados(0);
+  // EnviarDados(0);
+  // delay(500);
+  // ReceberDados(0);
+  // EnviarDados(0);
+
+  WiFi.begin("Inteli-welcome", "");
+
+  while (WiFi.status() != WL_CONNECTED) {  //Check for the connection
+    delay(1000);
+    Serial.println("Connecting to Main WiFi..");
+  }
+
+  // codigo buzzer
+  if(getBuzzerStatus() == 1){
+    delay(100);
+    tone(buzzer, 200);
+    delay(100);
+  }
+  else{
+    delay(100);
+    noTone(buzzer);
+    delay(100);
+  }
+
+  Serial.println("Connected to the WiFi network");
+  if (WiFi.status() == WL_CONNECTED) {
+  postDataToServer();
+  }else{
+    Serial.println("Error in WiFi connection");
+  }
+  delay(1000);
 }
