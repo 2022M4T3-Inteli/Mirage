@@ -39,6 +39,8 @@ O IoT Prototype é uma solução de internet das coisas para rastreamento de ati
 
     - <a href=""> <img src="https://user-images.githubusercontent.com/99209356/174970790-bd7000fa-c7a3-4244-b3e2-abb74368220d.svg" width="18px" height="18px"> </a> Backend <br>
 
+    - <a href=""> <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/54b16c39c720905d7e1630c16376926214efb66c/icons/folder-app-open.svg" width="18px" height="18px"> </a> Circuito <br>
+
     - <a href=""> <img src="https://user-images.githubusercontent.com/99209356/174972490-d6536781-e076-4850-bb80-0df3527983f6.svg" width="18px" height="18px"> </a> Frontend <br>
 
 
