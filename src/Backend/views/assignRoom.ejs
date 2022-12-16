@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheet/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Mirage Add Room</title>
+</head>
+<body class="document">
+    <div class="sidebar">
+        <div class="sidebarIcons">
+            <a href="/home">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/home.png">
+                Home
+            </a>
+            <a href="/search">
+                <img class="icons" src="https://img.icons8.com/material/512/search.png">
+                Search
+            </a>            
+            <a href="/assign">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/filled-plus-2-math.png">
+                Add new
+            </a>
+            <a href="/edit">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/pencil.png">
+                Edit
+            </a>
+            <a href="/remove">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/trash.png">
+                Remove
+            </a>
+            <a href="/">
+                <img class="icons" src="https://img.icons8.com/material/512/user-male-circle--v1.png">
+                Profile
+            </a>
+        </div>
+    </div>
+    <header class="centralize">
+        <div class="titulo primary-color">Mirage Tracking System</div>
+    </header>
+    <div class="content">
+    <form class="newRoom" action="/newRoom" method="POST">
+        <div class= "subtitulo primary-color">Registro da sala</div>
+        <div class="forms" action="/new">
+            <label for="nome_sala">Nome sala:</label>
+            <input class="btn btn-outline-primary" type="text" id="nome_sala" name="nome_sala">
+            <br>
+            <label for="planta_sala">Selecione o arquivo da planta:</label>
+            <input class="formsInput" type="file" id="planta_sala" name="planta_sala">
+            <br>
+            <input type="button" value="Adicionar" class="btn btn-primary" onclick="home_page()">   
+            <a href="/home">
+                <input type="button" value="Cancel" class="btn btn-outline-danger">
+            </a>
+        </div>
+    </form>
+    </div>
+</body>
+<script src="../script.js"></script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheet/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Mirage Tracking System</title>
+</head>
+<body class="document">
+    <div class="sidebar">
+        <div class="sidebarIcons">
+            <a class="active" href="/home">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/home.png">
+                Home
+            </a>
+            <a href="/search">
+                <img class="icons" src="https://img.icons8.com/material/512/search.png">
+                Search
+            </a>            
+            <a href="/assign">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/filled-plus-2-math.png">
+                Add new
+            </a>
+            <a href="/edit">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/pencil.png">
+                Edit
+            </a>
+            <a href="/remove">
+                <img class="icons" src="https://img.icons8.com/ios-glyphs/512/trash.png">
+                Remove
+            </a>
+            <a href="/">
+                <img class="icons" src="https://img.icons8.com/material/512/user-male-circle--v1.png">
+                Profile
+            </a>
+        </div>
+    </div>
+    <header class="centralize">
+        <h1 class="titulo info-color">Mirage Tracking System</h1>
+    </header>
+    <div class="content">
+            <section>
+                <aside>
+                    <canvas width="475px" height="400px" id="trackingMap">
+                        Your browser does not support the canvas element. Please use a different browser.
+                    </canvas>
+                </aside>
+            </section>
+    </div>
+    <div class="boxes">
+        <select class="select" id="rooms" onchange="direcionar_url()">
+            <option>Room1</option>
+            <option>Room2</option>
+        </select>
+        <br>
+        <select class="select" id="tags" onchange="direcionar_url()">
+            <option>All_Tags</option>
+            <option>Tag1</option>
+            <option>Tag2</option>
+            <option>Tag3</option>
+        </select>
+    </div>
+    <div id="inputdata"></div>
+    <center>
+        <input type="button" value="Start search" onclick="buzzerSearch(1)" class="btn btn-primary">
+        <input type="button" value="Stop search" onclick="buzzerSearch(0)" class="btn btn-secondary">
+    </center>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="../scripts/script.js"></script>
+</html>
