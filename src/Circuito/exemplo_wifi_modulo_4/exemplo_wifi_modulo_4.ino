@@ -141,7 +141,7 @@ void postDataToServer() {
   HTTPClient http;   
     
     // Especifica a URL e o tipo de arquivo da requisição
-    http.begin("https://24rrfm-3010.preview.csb.app/getdistances");  
+    http.begin("https://bvfvm2-8080.preview.csb.app/getdistances");  
     http.addHeader("Content-Type", "application/json");
      
     StaticJsonDocument<200> doc;
@@ -179,7 +179,7 @@ void getDataFromServer() {
   // Block until we are able to connect to the WiFi access point
   HTTPClient http;   
      
-    http.begin("https://24rrfm-3010.preview.csb.app/getdistances");  
+    http.begin("https://bvfvm2-8080.preview.csb.app/getdistances");  
     http.addHeader("Content-Type", "application/json");         
      
     StaticJsonDocument<200> doc;
@@ -337,7 +337,7 @@ int getBuzzerStatus(){
     Serial.println("Iniciando o GET request do buzzer...");
     HTTPClient http;
 
-    http.begin("https://24rrfm-3010.preview.csb.app/getbuzzer");  //Specify destination for HTTP request
+    http.begin("https://bvfvm2-8080.preview.csb.app/getbuzzer");  //Specify destination for HTTP request
     http.addHeader("Content-Type", "application/json");       //Specify content-type header
 
     StaticJsonDocument<200> doc;
