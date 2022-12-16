@@ -11,7 +11,7 @@
 
 Parceiro de projeto: <a href="https://atech.com.br/">Atech - Grupo Embraer</a>
 
-## Integrantes:
+## 🕺 Integrantes:
 - <a href="https://www.linkedin.com/in/caio-m1849">Caio Martins de Abreu</a>
 - <a href="https://www.linkedin.com/in/gabriel-pascoli-73733b200/">Gabriel Pascoli</a>
 - <a href="https://www.linkedin.com/in/giovana-lisboa-thome">Giovana Lisbôa Thomé</a>
@@ -20,7 +20,7 @@ Parceiro de projeto: <a href="https://atech.com.br/">Atech - Grupo Embraer</a>
 - <a href="https://www.linkedin.com/in/pablo-ruan-lana-viana/">Pablo Ruan Lana Viana</a>
 <br>
 
-## Descrição
+## 🎯 Descrição
 
 O IoT Prototype é uma solução de internet das coisas para rastreamento de ativos em um ambiente indoor, destinado para clientes da emrpesa [Atech](https://atech.com.br/).
 <br><br>
@@ -42,7 +42,7 @@ O IoT Prototype é uma solução de internet das coisas para rastreamento de ati
     - <a href=""> <img src="https://user-images.githubusercontent.com/99209356/174972490-d6536781-e076-4850-bb80-0df3527983f6.svg" width="18px" height="18px"> </a> Frontend <br>
 
 
-## Instruções de uso 
+## 📗 Instruções de uso 
 Para mais informações sobre componentes envolvidos, montage, instalação, configuração de código e utilização da aplicação web dedicada ao sistema IoT, acesse o <a href="https://github.com/2022M4T3-Inteli/Projeto4/blob/main/documentos/Manual%20de%20Instru%C3%A7%C3%B5es.pdf">Manual de Instruções</a> desenvolvido para maior auxílio.
 
 ## 📋 Licença
