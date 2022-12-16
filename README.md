@@ -8,11 +8,8 @@
 # IoT Prototype 
 
 ## Grupo 4: Mirage
-<div align="center">
-<img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png" width="200px">
 
-<a href="https://atech.com.br/" target="_blank">Fonte: TBD</a>
-</div>
+Parceiro de projeto: <a href="https://atech.com.br/">Atech - Grupo Embraer</a>
 
 ## Integrantes:
 - <a href="https://www.linkedin.com/in/caio-m1849">Caio Martins de Abreu</a>
@@ -36,23 +33,14 @@ O IoT Prototype é uma solução de internet das coisas para rastreamento de ati
 
   - <a href=""> <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/54b16c39c720905d7e1630c16376926214efb66c/icons/folder-docs-open.svg" height="18px" width="18px"> </a> <b>Documentos</b> <br>
 
-    - <a href=""><img src="https://user-images.githubusercontent.com/99209356/174968401-abc5cae1-7a1e-4f06-aca6-c859c993c038.svg" width="18px" height="18px"></a> IoTDoc.pdf<br>
-
-    - <a href=""><img src="https://user-images.githubusercontent.com/99209356/174968001-e5dfbc94-09e5-43d3-a5ab-60a684e673b3.svg" width="18px" height="18px"></a> IoTDoc.docx<br>
-
-    - <a href=""><img src="https://user-images.githubusercontent.com/99209356/174968401-abc5cae1-7a1e-4f06-aca6-c859c993c038.svg" width="18px" height="18px"></a> Manual de Instruções.pdf<br>
-
-    - <a href=""><img src="https://user-images.githubusercontent.com/99209356/174968001-e5dfbc94-09e5-43d3-a5ab-60a684e673b3.svg" width="18px" height="18px"></a> Manual de Instruções.docx<br>
-
   - <a href=""> <img src="https://user-images.githubusercontent.com/99209356/174968635-a4e7428f-1dec-4a79-a653-746679793d88.svg" width="18px" height="18px"></a> <b>Imagens</b><br>
 
   - <a href=""> <img src="https://user-images.githubusercontent.com/99209356/174962579-d242f1e5-3902-4de1-9236-0aba4d48513c.svg" width="18px" height="18px"> </a> <b>src</b> <br> 
 
-    - <a href=""> <img src="https://user-images.githubusercontent.com/99209356/174970790-bd7000fa-c7a3-4244-b3e2-abb74368220d.svg" width="18px" height="18px"> </a> Backend <br>
-
-    - <a href=""> <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/54b16c39c720905d7e1630c16376926214efb66c/icons/arduino.svg" width="18px" height="18px"> </a> Circuito <br>
-
     - <a href=""> <img src="https://user-images.githubusercontent.com/99209356/174972490-d6536781-e076-4850-bb80-0df3527983f6.svg" width="18px" height="18px"> </a> Frontend <br>
+
+## Instruções de uso 
+Para mais informações sobre componentes envolvidos, montage, instalação, configuração de código e utilização da aplicação web dedicada ao sistema IoT, acesse o <a href="https://github.com/2022M4T3-Inteli/Projeto4/blob/main/documentos/Manual%20de%20Instru%C3%A7%C3%B5es.pdf">Manual de Instruções</a> desenvolvido para maior auxílio.
 
 
 ## 📋 Licença
