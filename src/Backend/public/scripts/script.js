@@ -109,8 +109,14 @@ function get_data() {
     xhttp.send();
 }
 
-// codigo buzzer (lembrar de tirar do html)
+// codigo buzzer 
 function buzzerSearch(x) {
+    if(x==1){
+        $("#buzzer").html("On")
+    }
+    if(x==0){
+        $("#buzzer").html("Off")
+    }
     let url = "/getbuzzer";
     $.ajax({
         type: "POST",
