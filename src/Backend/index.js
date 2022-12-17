@@ -84,25 +84,47 @@ app
 });
 
 app.get("/getdistances", function (req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    dados = {
-        dist1: externalDist1,
-        dist2: externalDist2,
-        dist3: externalDist3,
-    };
-    jsonD = JSON.stringify(dados);
-    res.send(jsonD);
+  res.header("Access-Control-Allow-Origin", "*");
+  dados = {
+    dist1: externalDist1,
+    dist2: externalDist2,
+    dist3: externalDist3,
+  };
+  jsonD = JSON.stringify(dados);
+  res.send(jsonD);
 });
 
-function buzzerSearch(x) {
-    let url = "/getbuzzer";
-    $.ajax({
-    type: "POST",
-    url: url,
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
-    data: JSON.stringify({
-            status: x,
-        }),
-    });
-}
+app.post("/getdistances", function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  console.log(req);
+  console.log(req.body);
+  externalDist1 = req.body.dist1;
+  externalDist2 = req.body.dist2;
+  externalDist3 = req.body.dist3;
+  texto = req.body;
+  console.log(texto);
+  console.log("Recebi um dado");
+  res.send(texto);
+});
+
+
+// codigo buzzer
+app.post("/getbuzzer", function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  console.log(req);
+  console.log(req.body);
+  externalBuzzer = req.body.status;
+  texto = req.body;
+  console.log(texto);
+  console.log("Recebi um dado");
+  res.send(texto);
+});
+// codigo buzzer
+app.get("/getbuzzer", function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  dados = {
+    status: externalBuzzer,
+  };
+  jsonD = JSON.stringify(dados);
+  res.send(jsonD);
+});
