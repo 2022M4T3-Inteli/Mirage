@@ -8,7 +8,6 @@ router.get('/', function (req, res){
     res.render('assignBeacon'); 
 })
 
-
 router.post('/', async(req, res) => {
 
     // req,body

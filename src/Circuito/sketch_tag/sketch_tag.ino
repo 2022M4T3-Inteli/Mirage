@@ -2,11 +2,12 @@
 #include <HTTPClient.h>
 #include <WiFi.h>
 
-// codigo buzzer
+// Porta do buzzer
 const int buzzer = 2;
+// ssid e senha da rede wifi
+const char* ssidPrincipal = "Inteli-welcome";
+const char* pwdPrincipal = "";
 
-// #define SEVIDOR_ENVIO "https://ur524n-3000.preview.csb.app/teobaldo"
-// #define PINO_BUZZER 1 (ESSE NAO FUI EU ISRAEL QUE FIZ, JA TAVA)
 // Número de access points (beacons)
 #define NB_APS 3
 #define MAX_PONTOS 10
@@ -116,8 +117,6 @@ Triangulacao *t = NULL;
 //Vetores com nomes de rede e senhas dos Access Points
 const char* SSIDS[4]={"Inteli-welcome","Carlinhos","Pablinho2","Pablinho3"};
 const char* PWD[4]={"","Carlinhos","Pablinho2","Pablinho3"};
-//Variável que continua ou não o MENU 2
-int parar=0;
 String guardaRede;
 //Variável para medir a distância
 int distancia[3]={0,0,0};
@@ -134,10 +133,13 @@ bool ftmSuccess = true;
 /*void Triangulacao{
   
 }*/
+
+// Funcao para enviar os dados da distância para o servidor
 void postDataToServer() {
  
   Serial.println("Posting JSON data to server...");
-  // Block until we are able to connect to the WiFi access point
+  
+  // Cria um objeto HTTPClient para fazer a requisição
   HTTPClient http;   
     
     // Especifica a URL e o tipo de arquivo da requisição
@@ -145,23 +147,16 @@ void postDataToServer() {
     http.addHeader("Content-Type", "application/json");
      
     StaticJsonDocument<200> doc;
+
     // Add values in the document
-    //
     doc["dist1"]=distancia[0];
     doc["dist2"]=distancia[1];
     doc["dist3"]=distancia[2];
-     // Add an array.
-    //
-    // JsonArray data = doc.createNestedArray("data");
-    // for(int i=0; i<3; i++)
-    // {
-    //   data.add(distancia[i]);
-    // }
      
-    String requestBody;
-    serializeJson(doc, requestBody);
+    String requestBody; // String que armazena o JSON
+    serializeJson(doc, requestBody); // Serializa a String para JSON
     
-    int httpResponseCode = http.POST(requestBody);
+    int httpResponseCode = http.POST(requestBody); // Faz a requisição POST
  
     if(httpResponseCode>0){
        
@@ -171,8 +166,9 @@ void postDataToServer() {
       Serial.println(response);
      
     }
-     
 }
+
+// Funcao para pegar os dados do servidor
 void getDataFromServer() {
  
   Serial.println("Pegando dados do Servidor...");
@@ -232,67 +228,7 @@ bool getFtmReport(){
   // Wait for signal that report is received and return true if status was success
   return xSemaphoreTake(ftmSemaphore, portMAX_DELAY) == pdPASS && ftmSuccess;
 }
-//Função para um Menu de escolha cujo intuito é mostrar todas as possibilidades do Wifi.
-//Conectar separadamente nos APs e depois fazer a triangulação
-//Utilizado na função CONECTAR, para continuar mostrando os dados da conexão enquanto permanecer
-//conectado. 
-int menu2()
-{
-  Serial.println(F("\nEscolha uma opção 2:"));
-  //fica aguardando enquanto o usuário nao enviar algum dado
-  while(!Serial.available()){};
-  //recupera a opção escolhida
-  int op = (int)Serial.read();
-  //remove os proximos dados (como o 'enter ou \n' por exemplo) que vão por acidente
-  while(Serial.available()) {
-    if(Serial.read() == '\n') break; 
-    Serial.read();
-  }
-  return (op-48);//do valor lido, subtraimos o 48 que é o ZERO da tabela ascii
-}
-//Função para conectar em APs sem medição FTM
-void EnviarDados(int rede)
-{
-  Serial.println("Conectando na rede: ");
-  Serial.println(rede);
-  WiFi.begin(SSIDS[rede],PWD[rede]);
-      while (WiFi.status() != WL_CONNECTED) {
-        Serial.print("Tentando novamente!");
-        delay(500);
-      }
-      while(parar==0)
-      {
-        Serial.println("WiFi connected");
-        //DadosConexao();
-        postDataToServer();      
-        parar = menu2();
-      }
-      parar=0;
-      WiFi.disconnect();
-      Serial.println("Desconectei!");
-}
-void ReceberDados(int rede)
-{
-  Serial.println("Conectando na rede: ");
-  Serial.println(rede);
-  WiFi.begin(SSIDS[rede],PWD[rede]);
-      while (WiFi.status() != WL_CONNECTED) {
-        Serial.print("Tentando novamente!");
-        delay(500);
-      }
-      while(parar==0)
-      {
-        Serial.println("WiFi connected");
-        //DadosConexao();
-        getDataFromServer();      
-        parar = menu2();
-      }
-      parar=0;
-      WiFi.disconnect();
-      Serial.println("Desconectei!");
-}
-//Função para conectar num AP sem medição FTM. Futuramente para conectar na internet e enviar 
-//os dados dos sensores
+// Função que mede a distância de um beacon até a tag, utilizando do FTM
 void MedirDistancia(int rede){
   // Create binary semaphore (initialized taken and can be taken/given from any thread/ISR)
   ftmSemaphore = xSemaphoreCreateBinary();
@@ -330,30 +266,28 @@ void setup() {
   Serial.println("X: " + String(t->pontoXMedio()) + "\nY: " + String(t->pontoYMedio()));
 }
 
-// codigo buzzer
+// Função que recebe o estado do buzzer do servidor
 int getBuzzerStatus(){
   if (WiFi.status() == WL_CONNECTED) {  //Check WiFi connection status
 
     Serial.println("Iniciando o GET request do buzzer...");
     HTTPClient http;
 
-    http.begin("https://bvfvm2-8080.preview.csb.app/getbuzzer");  //Specify destination for HTTP request
-    http.addHeader("Content-Type", "application/json");       //Specify content-type header
+    http.begin("https://bvfvm2-8080.preview.csb.app/getbuzzer");  // Especifica o destino da requisicao
+    http.addHeader("Content-Type", "application/json");       // Especifica o tipo de conteudo
 
-    StaticJsonDocument<200> doc;
+    StaticJsonDocument<200> doc; // Cria um documento JSON
 
-    int httpResponseCode = http.GET();  //Send the actual GET request
+    int httpResponseCode = http.GET();  // Envia a requisicao
 
-    if (httpResponseCode > 0) {
+    if (httpResponseCode > 0) {  // Verifica se a requisicao foi bem sucedida
 
+      String response = http.getString();  // Recebe a resposta do servidor
+      Serial.println(httpResponseCode);  // Printa o codigo de resposta
+      Serial.println(response);          // Printa a resposta da requisicao
 
-      String response = http.getString();  //Get the response to the request
-
-      Serial.println(httpResponseCode);  //Print return code
-      Serial.println(response);          //Print request answer
-
-      deserializeJson(doc, response);
-      int buzzerStatus = doc["status"];
+      deserializeJson(doc, response); // Deserializa a resposta do servidor
+      int buzzerStatus = doc["status"]; // Atribui o valor do status do buzzer a variavel buzzerStatus
 
       return buzzerStatus;
       
@@ -364,7 +298,7 @@ int getBuzzerStatus(){
       Serial.println(httpResponseCode);
     }
 
-    http.end();  //Free resources
+    http.end();  // Libera o espaco alocado para a requisicao
 
   }
   else{
@@ -374,26 +308,22 @@ int getBuzzerStatus(){
 
 void loop() {
   Serial.println("Calculando distâncias:");
-  for(int i=1; i<4;i++)
+  for(int i=1; i<4;i++) // Realiza o cálculo de distância para cada rede/beacon
   {
     indice=i-1;
     MedirDistancia(i);
   }
   delay(1000);
-  // ReceberDados(0);
-  // EnviarDados(0);
-  // delay(500);
-  // ReceberDados(0);
-  // EnviarDados(0);
 
-  WiFi.begin("Inteli-welcome", "");
+  WiFi.begin(ssidPrincipal, pwdPrincipal); // Conecta na rede principal
 
-  while (WiFi.status() != WL_CONNECTED) {  //Check for the connection
+  while (WiFi.status() != WL_CONNECTED) {  // Espera a conexão com a rede principal
     delay(1000);
     Serial.println("Connecting to Main WiFi..");
   }
+  Serial.println("Connected to the WiFi network");
 
-  // codigo buzzer
+  // Checa qual o estado do buzzer e toca o buzzer de acordo com o estado
   if(getBuzzerStatus() == 1){
     delay(100);
     tone(buzzer, 200);
@@ -405,7 +335,7 @@ void loop() {
     delay(100);
   }
 
-  Serial.println("Connected to the WiFi network");
+  // Posta os dados do calculo da distancia para o servidor
   if (WiFi.status() == WL_CONNECTED) {
   postDataToServer();
   }else{

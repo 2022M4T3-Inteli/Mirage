@@ -83,6 +83,7 @@ app
     console.log(`Server running at http://${hostname}:${port}/`);
 });
 
+// Rota utilizada para o recebimento dos dados da distância
 app.get("/getdistances", function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   dados = {
@@ -94,6 +95,7 @@ app.get("/getdistances", function (req, res) {
   res.send(jsonD);
 });
 
+// Rota utilizada para o envio dos dados da distância
 app.post("/getdistances", function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   console.log(req);
@@ -107,8 +109,17 @@ app.post("/getdistances", function (req, res) {
   res.send(texto);
 });
 
+// Rota utilizada para o recebimento do estado do buzzer
+app.get("/getbuzzer", function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  dados = {
+    status: externalBuzzer,
+  };
+  jsonD = JSON.stringify(dados);
+  res.send(jsonD);
+});
 
-// codigo buzzer
+// Rota utilizada para o envio do estado do buzzer
 app.post("/getbuzzer", function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   console.log(req);
@@ -118,13 +129,4 @@ app.post("/getbuzzer", function (req, res) {
   console.log(texto);
   console.log("Recebi um dado");
   res.send(texto);
-});
-// codigo buzzer
-app.get("/getbuzzer", function (req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  dados = {
-    status: externalBuzzer,
-  };
-  jsonD = JSON.stringify(dados);
-  res.send(jsonD);
 });

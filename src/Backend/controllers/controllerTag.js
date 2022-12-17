@@ -27,6 +27,7 @@ exports.updateTag = function (req, res, next){
     }).catch(next);
 };
 
+
 exports.deleteUpdate = function (req, res, next){
     Tags.findByIdAndRemove({_id: req.params.id}).then(function(Tags){
         res.send(Tags);
