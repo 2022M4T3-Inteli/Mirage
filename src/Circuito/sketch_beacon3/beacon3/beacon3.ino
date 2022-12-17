@@ -8,8 +8,8 @@
 */
 #include "WiFi.h"
 // Change the SSID and PASSWORD here if needed
-const char * WIFI_FTM_SSID = "Pablinho2";
-const char * WIFI_FTM_PASS = "Pablinho2";
+const char * WIFI_FTM_SSID = "Pablinho3";
+const char * WIFI_FTM_PASS = "Pablinho3";
 
 void setup() {
   Serial.begin(115200);
