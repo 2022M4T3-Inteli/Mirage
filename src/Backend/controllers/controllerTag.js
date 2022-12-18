@@ -18,7 +18,7 @@ exports.readTag = function (req, res, next){
     });
 }
 exports.updateTag = function (req, res, next){
-    // apaga ‘pi’ da BD, depois, devolve o ‘pi’ apagado ao cliente
+
     Tags.findByIdAndUpdate({_id: req.params.id},
         req.body).then(function(){
     Tags.findOne({_id: req.params.id}).then(function(Tags){
