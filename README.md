@@ -45,7 +45,7 @@ O IoT Prototype é uma solução de internet das coisas para rastreamento de ati
 
 
 ## 📗 Instruções de uso 
-Para mais informações sobre componentes envolvidos, montage, instalação, configuração de código e utilização da aplicação web dedicada ao sistema IoT, acesse o <a href="https://github.com/2022M4T3-Inteli/Projeto4/blob/main/documentos/Manual%20de%20Instru%C3%A7%C3%B5es.pdf">Manual de Instruções</a> desenvolvido para maior auxílio.
+Para mais informações sobre componentes envolvidos, montagem, instalação, configuração de código e utilização da aplicação web dedicada ao sistema IoT, acesse o <a href="https://github.com/2022M4T3-Inteli/Projeto4/blob/main/documentos/T3_G4_V1_6_Instruction_Manual.pdf">Manual de Instruções</a> desenvolvido.
 
 ## 📋 Licença
 
